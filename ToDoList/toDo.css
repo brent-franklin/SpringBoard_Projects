@@ -1,0 +1,13 @@
+.strike{
+    text-decoration: line-through;
+    color: black;
+}
+
+ul{
+    list-style: none;
+}
+
+li{
+    color: purple;
+}
+
