@@ -12,7 +12,7 @@ describe('A loan calculator', () => {
   
   
   it("updateMonthly returns as defined and includes $", function() {
-    
+    expect(updateMonthly(calculateMonthlyPayment(calc))).toBeDefined();
   });
   
 });
