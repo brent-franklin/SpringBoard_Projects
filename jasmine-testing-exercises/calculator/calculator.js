@@ -28,14 +28,14 @@ function setupIntialValues() {
   formAmount.value = calc.amount;
   formYears.value = calc.years;
   formRate.value = calc.rate;
-  update();
+  return update();
 }
 
 // Get the current values from the UI
 // Update the monthly payment
 function update() {
   const updatedPayments = getCurrentUIValues();
-  updateMonthly(calculateMonthlyPayment(updatedPayments));
+  return updateMonthly(calculateMonthlyPayment(updatedPayments));
 }
 
 // Given an object of values (a value has amount, years and rate ),
@@ -45,12 +45,12 @@ function calculateMonthlyPayment(values) {
   const principle = values.amount;
   const monthlyRate = (values.rate/100) / 12;
   const payments = values.years * 12;
-  return ((principle * monthlyRate) / (1 - Math.pow((1 + monthlyRate), -payments))).toFixed(2);
+  return parseFloat(((principle * monthlyRate) / (1 - Math.pow((1 + monthlyRate), -payments))).toFixed(2));
 }
 
 // Given a string representing the monthly payment value,
 // update the UI to show the value.
 function updateMonthly(monthly) {
   const monthlyPayment = document.getElementById('monthly-payment');
-  monthlyPayment.innerText = '$' + monthly;
+  return monthlyPayment.innerText = '$' + monthly;
 }
