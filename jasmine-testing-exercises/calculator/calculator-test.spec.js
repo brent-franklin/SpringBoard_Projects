@@ -12,8 +12,16 @@ describe('A loan calculator', () => {
   
   
   it("updateMonthly returns as defined and includes $", function() {
-    expect(updateMonthly(calculateMonthlyPayment(calc))).toBeDefined();
+    let uMonthly = updateMonthly(calculateMonthlyPayment(calc));
+    expect(uMonthly).toBeDefined();
+    expect(uMonthly).toContain('$');
   });
+
+    
+  it('update() should update the monthly payment depending on the metrics used', () => {
+    expect(update()).toEqual('$308.77');
+  });
+
   
 });
 
