@@ -11,7 +11,32 @@
     <script type="text/javascript" src="/calculator/calculator.js"></script>
     <script type="text/javascript" src="/calculator/calculator-test.spec.js"></script>
   </head>
-  <body>/
+  <body>
+      <header>
+        <h1>Loan Calculator 💰💲💵</h1>
+      </header>
+      <section class="calc-container">
+        <form id="calc-form">
+          <label>
+            Loan Amount
+            <input type="text" id="loan-amount">
+          </label>
+          <label>
+            Term in Years
+            <input type="text" id="loan-years">
+          </label>
+          <label>
+            Yearly Rate
+            <input type="text" id="loan-rate">
+          </label>
+          <button type="submit" id="calc-submit">Calculate</button>
+        </form>
+        <div>
+          <h3>Monthly Payment<h3>
+            <span id="monthly-payment"></span>
+          </div>
+        </section>
+      
 
   </body>
 </html>
