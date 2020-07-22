@@ -17,7 +17,7 @@ function submitServerInfo(evt) {
   if (serverName !== '') {
     serverId++;
     allServers['server' + serverId] = { serverName };
-    console.log(allServers);
+    
 
     updateServerTable();
 
@@ -39,6 +39,7 @@ function updateServerTable() {
 
     appendTd(newTr, curServer.serverName);
     appendTd(newTr, '$' + tipAverage.toFixed(2));
+    appendDeleteBtn(newTr);
 
     serverTbody.append(newTr);
   }
