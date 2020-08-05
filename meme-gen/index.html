@@ -10,13 +10,47 @@
     <h1>Meme-ify</h1>
     <section id="formContainer">
         <form id="myForm">
-            <label for="images">Image Link/URL</label>
-            <input type="url" name="images" placeholder="INPUT IMAGE URL">
-            <label for="header">Meme Header</label>
-            <input type="text" name="header" placeholder="INPUT HEADER TEXT">
-            <label for="footer">Meme Footer</label>
-            <input type="text" name="footer" placeholder="INPUT FOOTER TEXT">
-            <button type="submit">CREATE MEME</button>
+            <div>
+                <label for="images">Image Link/URL</label> <br>
+                <input type="url" name="images" placeholder="INPUT IMAGE URL">
+            </div>
+            <div>
+                <label for="header">Meme Header - </label>
+                <span>
+                    <input type="checkbox" name="include" id="hInclude" checked> Add Header
+                </span>
+                <span>
+                    <input type="checkbox" name="include" id="hOuter" checked> Header Above Image <br>
+                </span>
+                <input type="text" name="header" placeholder="INPUT HEADER TEXT">
+            </div>
+            <div>
+
+                <label for="footer">Meme Footer - </label>
+                <span>
+                    <input type="checkbox" name="include" id="fInclude" checked> Add Footer
+                </span>
+                <span>
+                    <input type="checkbox" name="include" id="fOuter" checked> Footer Below Image <br>
+                </span>
+                <input type="text" name="footer" placeholder="INPUT FOOTER TEXT">
+            </div>
+            <div>
+                <label>Select Color Overlay</label>
+                <select id = "myList">
+                  <option value = "none">None</option>
+                  <option value = "red">Red</option>
+                  <option value = "orange">Orange</option>
+                  <option value = "yellow">Yellow</option>
+                  <option value = "green">Green</option>
+                  <option value = "blue">Blue</option>
+                  <option value = "purple">Purple</option>
+                  <option value = "black">Black</option>
+                </select>
+            </div>
+            <div id="btn">
+                <button type="submit">CREATE MEME</button>
+            </div>
         </form>
     </section>
     <!-- <section id="memeList"></section> -->
