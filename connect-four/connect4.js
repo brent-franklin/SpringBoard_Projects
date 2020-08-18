@@ -88,7 +88,8 @@ function placeInTable(y, x) {
   
   pieceLocation.appendChild(newPiece);
   board[y].splice(x, 1, currPlayer);
-      if (checkForWin()) {
+      
+  if (checkForWin()) {
         return endGame(`Player ${currPlayer} won!`);
       }
 }
@@ -108,27 +109,32 @@ function handleClick(evt) {
   
   // get next spot in column (if none, ignore click)
   const y = findSpotForCol(x);
+  console.log(y);
   if (y === null) {
     return;
   }
+  
   
   // place piece in board and add to HTML table
   // TODO: add line to update in-memory board
   placeInTable(y, x);
   
-  currPlayer === 2 ? currPlayer-- : currPlayer++;
+  //update currPlayer
+  currPlayer === 1 ? currPlayer++ : currPlayer--;
   
-  // check for win
+  
   
   // check for tie
   // TODO: check if all cells in board are filled; if so call, call endGame
+
+  //grab all td's
   const tds = Array.from(document.querySelectorAll('td'));
+  // create array of all td's without the first row
   const [,,,,,,, ...tdArr] = tds;
   
-  if(tdArr.every((td) => td.lastChild)) {alert('Restart: Tie Game')};
+  // if all are full then alert "Tie Game"
+  if(tdArr.every((td) => td.lastChild)) {alert('Tie Game')};
   
-  // switch players
-  // TODO: switch currPlayer 1 <-> 2
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
@@ -151,13 +157,17 @@ function checkForWin() {
 
   // TODO: read and understand this code. Add comments to help you.
 
+  // loop over each subarray in board
   for (let y = 0; y < HEIGHT; y++) {
+    //loop over each value in the subarray
     for (let x = 0; x < WIDTH; x++) {
+      //create arrays of each direction to check with _win
       const horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
       const vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]];
       const diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];
       const diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]];
 
+      //add each constant to the _win function to check
       if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {
         return true;
       }
