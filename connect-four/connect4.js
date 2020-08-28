@@ -61,9 +61,9 @@ function makeHtmlBoard() {
 
 function findSpotForCol(x) {
   // TODO: write the real version of this, rather than always returning 0
-  let tdArr = [];
+  const tdArr = [];
   for (let i = 5; i >= 0; i--) {
-    let td = document.getElementById(`${i}-${x}`);
+    const td = document.getElementById(`${i}-${x}`);
     tdArr.push(td);
   }
 
