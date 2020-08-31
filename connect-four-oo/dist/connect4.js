@@ -185,6 +185,7 @@
       //  - returns true if all are legal coordinates & all match currPlayer
       cells.every(
         ([y, x]) => {
+          console.log(this.board[y][x]);
           y >= 0 &&
           y < this.HEIGHT &&
           x >= 0 &&
