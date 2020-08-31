@@ -38,7 +38,7 @@
   }
     
   let count = 0;
-  const heading = document.querySelector('#container div h1');
+  const heading = document.querySelector('h1');
   canvas.addEventListener('click', pickHoverColor);
       
   function pickHoverColor(e){
