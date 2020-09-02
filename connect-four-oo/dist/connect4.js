@@ -6,19 +6,21 @@
  */
 
 
+ //Grabbing all the HTML elements on the page
 const startBtn = document.querySelector('#btn');
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
+const colorBtn = document.getElementById('btn2')
+const colorContainer = document.getElementById('color-container');
 let playerColor = document.getElementById('color1');
 let playerTurn = document.querySelector('h1');
 let subHeading = document.querySelector('h5');
-let colorBtn = document.getElementById('btn2')
-let colorContainer = document.getElementById('color-container');
 
 
 
-
+// Creating a Class to create a color choosing session
 class ColorChoice {
+  // Inputting all of the HTML elements that change with color session input
   constructor (canvas, subHeading, playerTurn, colorContainer){
     this.canvas = canvas;
     this.colorContainer = colorContainer;
@@ -27,6 +29,7 @@ class ColorChoice {
     this.createMainColor();
   }
 
+  // creating the grid of colors for the canvas
   createMainColor () {
     const grid = ctx.createLinearGradient(-10, 0, 97, 0);
     grid.addColorStop(1/7, 'red');
@@ -41,7 +44,7 @@ class ColorChoice {
     ctx.fillRect(0,0,100,200);
   }
   
-  
+  // Creating a hover effect for the player divs
   hoverColor(e) {
     const colorOnImg = ctx.getImageData((e.offsetX / canvas.clientWidth) * canvas.width, (e.offsetY / canvas.clientHeight) * canvas.height, 1, 1);
     const rgba = colorOnImg.data;
@@ -49,7 +52,7 @@ class ColorChoice {
     playerColor.style.background = color;
   }
   
-  
+  // changing players and adjusting related elements
   pickHoverColor(e){
     if(playerColor.id === 'color2'){
       playerTurn.innerText = 'Player 1';
@@ -65,18 +68,20 @@ class ColorChoice {
   
 }
 
-
+// creating my first color picker instance
 let firstColors = new ColorChoice(canvas, subHeading, playerTurn, colorContainer);
+// adding event listeners with the ColorChoice class methods
 canvas.addEventListener('mousemove', firstColors.hoverColor);
 canvas.addEventListener('click', firstColors.pickHoverColor);
 
 
 
 
-
+// creating a new color picker session after game is over
   colorBtn.addEventListener('click', () => {
     colorContainer.style.height = '150px';
     subHeading.innerText = 'Choose a Color'
+    playerTurn.innerText = 'Player 1'
     canvas.style.display = 'block';
     startBtn.style.display = 'none';
     colorBtn.style.display = 'none';
@@ -90,7 +95,7 @@ canvas.addEventListener('click', firstColors.pickHoverColor);
 
 
 
-  
+  // create a game 
   class Game {
     constructor(HEIGHT, WIDTH, player1, player2){
       this.players = [player1, player2];
@@ -102,15 +107,15 @@ canvas.addEventListener('click', firstColors.pickHoverColor);
       this.playerTurn = playerTurn;
     }
     
-    
+    // make board to store player info
     makeBoard() {
       this.board = []; // array of rows, each row is array of cells  (board[y][x])
       for (let y = 0; y < this.HEIGHT; y++) {
         this.board.push(Array.from({ length: this.WIDTH }));
       }
     }
+
     /** makeHtmlBoard: make HTML table and row of column tops. */
-    
     makeHtmlBoard() {
       const board = document.getElementById('board');
       board.innerHTML = '';
@@ -147,15 +152,7 @@ canvas.addEventListener('click', firstColors.pickHoverColor);
   }
 }
 
-
-/** makeBoard: create in-JS board structure:
- *   board = array of rows, each row is array of cells  (board[y][x])
- */
-
-
-
 /** findSpotForCol: given column x, return top empty y (null if filled) */
-
 findSpotForCol(x) {
   for (let y = this.HEIGHT - 1; y >= 0; y--) {
     if (!this.board[y][x]) {
@@ -165,8 +162,8 @@ findSpotForCol(x) {
   return null;
 }
 
-/** placeInTable: update DOM to place piece into HTML table of board */
 
+/** placeInTable: update DOM to place piece into HTML table of board */
 placeInTable(y, x) {
   const piece = document.createElement('div');
   piece.classList.add('piece');
@@ -179,13 +176,11 @@ placeInTable(y, x) {
 }
 
 /** endGame: announce game end */
-
 endGame(msg) {
   return alert(msg);
 }
 
 /** handleClick: handle click of column top to play piece */
-
 handleClick(evt) {
   // get x from ID of clicked cell
   const x = +evt.target.id;
@@ -220,7 +215,6 @@ handleClick(evt) {
 }
 
 /** checkForWin: check board cell-by-cell for "does a win startBtn here?" */
-
 checkForWin() {
   const _win = (cells) => {
     // Check four cells to see if they're all color of current player

@@ -45,3 +45,16 @@ body{
     flex-direction: column;
     justify-content: space-around;
 }
+
+@keyframes spin {
+    0% {
+        transform: rotate3D(0, 1, 0, 0deg);
+      }
+      100% {
+        transform: rotate3D(0, 1, 0, 180deg);
+      }
+    }
+
+.spin {
+    animation: spin 1s infinite ease-in;
+}
