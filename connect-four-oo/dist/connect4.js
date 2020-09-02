@@ -21,8 +21,7 @@ let subHeading = document.querySelector('h5');
 // Creating a Class to create a color choosing session
 class ColorChoice {
   // Inputting all of the HTML elements that change with color session input
-  constructor (canvas, subHeading, playerTurn, colorContainer){
-    this.canvas = canvas;
+  constructor (subHeading, playerTurn, colorContainer){
     this.colorContainer = colorContainer;
     this.subHeading = subHeading;
     this.playerTurn = playerTurn;
@@ -69,7 +68,7 @@ class ColorChoice {
 }
 
 // creating my first color picker instance
-let firstColors = new ColorChoice(canvas, subHeading, playerTurn, colorContainer);
+let firstColors = new ColorChoice( subHeading, playerTurn, colorContainer);
 // adding event listeners with the ColorChoice class methods
 canvas.addEventListener('mousemove', firstColors.hoverColor);
 canvas.addEventListener('click', firstColors.pickHoverColor);
@@ -86,7 +85,7 @@ canvas.addEventListener('click', firstColors.pickHoverColor);
     startBtn.style.display = 'none';
     colorBtn.style.display = 'none';
     playerColor = document.getElementById('color1');
-    new ColorChoice(canvas, subHeading, playerTurn, colorContainer);
+    new ColorChoice(subHeading, playerTurn, colorContainer);
   })
 
 
