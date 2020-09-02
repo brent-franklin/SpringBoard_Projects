@@ -25,11 +25,11 @@ class ColorChoice {
     this.colorContainer = colorContainer;
     this.subHeading = subHeading;
     this.playerTurn = playerTurn;
-    this.createMainColor();
+    this.createGradient();
   }
 
   // creating the grid of colors for the canvas
-  createMainColor () {
+  createGradient () {
     const grid = ctx.createLinearGradient(-10, 0, 97, 0);
     grid.addColorStop(1/7, 'red');
     grid.addColorStop(2/7, 'orange');
