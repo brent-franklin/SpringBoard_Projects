@@ -85,7 +85,6 @@ canvas.addEventListener('click', firstColors.pickHoverColor);
     startBtn.style.display = 'none';
     colorBtn.style.display = 'none';
     playerColor = document.getElementById('color1');
-    new ColorChoice(subHeading, playerTurn, colorContainer);
   })
 
 
