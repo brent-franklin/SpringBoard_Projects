@@ -23,15 +23,19 @@ body{
     }
 
         .jumbotron{
+            display: flex;
+            flex-direction: column;
             padding: 20px 20px;
             text-align: center;
+            text-justify: center;
             height: 150px;
+
 
 
             h1 {
                 font-family: 'Courier New', Courier, monospace;
                 font-size: 20px;
-                margin-top: 10px;
+                margin-top: 20px;
             }
         }
 

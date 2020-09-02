@@ -75,6 +75,14 @@ h4 {
   width: 60%;
 }
 
+#btn2 {
+  display: none;
+  margin: auto;
+  width: 60%;
+}
+
+
+
 /* pieces are div within game table cells: draw as colored circles */
 
 .piece {
