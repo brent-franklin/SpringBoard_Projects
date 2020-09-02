@@ -205,6 +205,7 @@ handleClick(evt) {
   
   // check for tie
   if (this.board.every(row => row.every(cell => cell))) {
+    colorBtn.style.display = 'block';
     return this.endGame('Tie!');
   }
   
