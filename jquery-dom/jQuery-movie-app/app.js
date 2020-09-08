@@ -11,9 +11,12 @@ $form.submit((e) => {
     } else {
         $('ul')
         .append(
-            `<li><strong>Movie:</strong> ${$inputs[0].value} <br>
-            <strong>Rating:</strong> <span>${$inputs[1].value}</span>
-            <br><button type="submit" class="remove">Remove</button></li>`
+            `<li
+            data-title="${$inputs[0].value}" 
+            data-rating="${$inputs[1].value}">
+            <strong>Movie:</strong> <span>${$inputs[0].value}</span> <br>
+            <strong>Rating:</strong> <span>${$inputs[1].value}</span> <br>
+            <button type="submit" class="remove">Remove</button></li>`
             )
         }
     
@@ -25,23 +28,39 @@ $movieList.on('click', '.remove', function() {
     $(this).parent().remove();
 })
 
-$('#alphabet').click(() => {
-    $movieList.children().detach().sort(function(a, b) {
-      return $(a).text().localeCompare($(b).text());
-    }).appendTo($movieList);  
-})
 
-$('#numbers').click(() => {
-    // console.log($movieList.find('li').detach().find('span').parent('li'));
-    $movieList.find('li').find('span').sort(function(a, b) {
-        if($(a).text().localeCompare($(b).text()) === 1){
-            return $(a).parent();
-        } else {
-            return $(b).parent();
+
+$('#alphabet').on('click',function(){
+    
+    if($(this).text() === "Sort A-Z"){
+    const alphArr = [...document.querySelectorAll('[data-title]')].sort(function(a, b){
+        const aData = (a.dataset.title).toLowerCase();
+        const bData = (b.dataset.title).toLowerCase();
+            return (aData < bData) ? -1 : (aData > bData) ? 1 : 0;
+    })
+        $movieList.empty().append(alphArr);
+    } else { 
+        const reverseArr = [...$movieList.children()].reverse();
+        $movieList.empty().append(reverseArr);
+    }
+
+    $(this).text() === "Sort A-Z" ? $(this).text('Sort Z-A') : $(this).text('Sort A-Z');
+});
+
+
+
+$('#numbers').on('click',function(){
+    if($(this).text() === "Sort Rate-->"){
+        const alphArr = [...document.querySelectorAll('[data-title]')].sort(function(a, b){
+            const aData = parseInt(a.dataset.rating);
+            const bData = parseInt(b.dataset.rating);
+                return (aData < bData) ? -1 : (aData > bData) ? 1 : 0;
+        })
+            $movieList.empty().append(alphArr);
+        } else { 
+            const reverseArr = [...$movieList.children()].reverse();
+            $movieList.empty().append(reverseArr);
         }
-      }).appendTo($movieList);  
-})
-
-
- 
-
+    
+        $(this).text() === "Sort Rate-->" ? $(this).text('<--Sort Rate') : $(this).text('Sort Rate-->');
+    });
