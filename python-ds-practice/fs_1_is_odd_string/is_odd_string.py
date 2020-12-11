@@ -27,5 +27,13 @@ def is_odd_string(word):
         >>> is_odd_string('amazing')
         True
     """
+    answer = 0
+    for letter in word:
+        answer = answer ^ ord(letter)
+
+    if answer == 0:
+        return False
+    else:
+        return True
 
     # Hint: you may find the ord() function useful here

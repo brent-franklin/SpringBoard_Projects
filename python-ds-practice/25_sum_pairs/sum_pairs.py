@@ -1,6 +1,5 @@
 def sum_pairs(nums, goal):
     """Return tuple of first pair of nums that sum to goal.
-
     For example:
 
         >>> sum_pairs([1, 2, 2, 10], 4)
@@ -21,14 +20,15 @@ def sum_pairs(nums, goal):
         >>> sum_pairs([11, 20, 4, 2, 1, 5], 100)
         ()
     """
-# nums, goal
 
-    compare_lst = nums.copy()
-    for num in nums:
-        for compare_num in compare_lst:
-            if num + compare_num == goal:
-                return (num, compare_num)
-            else:
-                return ()
+    already_visited = set()
 
+    for i in nums:
+        difference = goal - i
 
+        if difference in already_visited:
+            return (difference, i)
+
+        already_visited.add(i)
+
+    return ()

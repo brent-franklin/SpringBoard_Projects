@@ -1,15 +1,19 @@
-from functools import partial
-from inspect import signature
+# from functools import partial
+# from inspect import signature
+import math
 
 
-def curry(func):
-    def inner(arg):
-        if len(signature(fnc).parameters) == 1:
-            return func(arg)
-        return curry(partial(func, arg))
-    return inner
+# def curry(func):
+#     TODO: Figure out this curry function #18
+    # def inner(arg):
+    #     if len(signature(func).parameters) == 1:
+    #         return func(arg)
+    #     return curry(partial(func, arg))
+    #
+    # return inner
 
-@curry
+
+# @curryy
 def calculate(operation, a, b, make_int=False, message='The result is'):
     """Perform operation on a + b, ()possibly truncating) & returning w/msg.
 
@@ -51,7 +55,9 @@ def calculate(operation, a, b, make_int=False, message='The result is'):
     else:
         return None
 
-    if(make_int == True):
-        answer = answer.floor()
+    if make_int == True:
+        answer = math.trunc(answer)
 
     return f'{message} {answer}'
+
+

@@ -14,10 +14,7 @@ def friend_date(a, b):
         False
 
         >>> friend_date(sauron, gandalf)
-        True 
+        True
     """
-    if a[2][1] not in b[2]:
-        return False
-    else:
-        return True
+    return bool(set(a[2]) & set(b[2]))
 
