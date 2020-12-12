@@ -48,5 +48,11 @@ class SpecialWordFinder(WordFinder):
         self.seen_words = self.read_words(self.word_file)
         self.count_words(self)
 
+    def __str__(self):
+        return "This is a Special Word Finder"
+
+    def __repr__(self):
+        return f"<SpecialWordFinder word_file={self.word_file} count_words={self.count_words(self)}>"
+
     def read_words(self, file):
         return [line.strip() for line in file if line.strip() and not line.startswith("#")]

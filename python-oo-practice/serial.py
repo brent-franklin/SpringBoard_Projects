@@ -25,6 +25,9 @@ class SerialGenerator:
         self.start = start
         self.reset_int = start
 
+    def __repr__(self):
+        return f"<SerialGenerator start={self.start}>"
+
     def generate(self):
         self.start += 1
         return self.start - 1
