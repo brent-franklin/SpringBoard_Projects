@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Making Mad</title>
+<h1>Making Mad</h1>
+<h4>Turn your story into a madlib!</h4>
+{% endblock %}
+{% block madlib %}
+<form id="sanelib" action="/story" method="POST">
+    <button>SUBMIT</button>
+    <label for="madlib-entry">Enter Story</label>
+    <textarea name="madlib-entry" rows="4" cols="50"></textarea>
+</form>
+
+<div>
+    <p id="madlib">{{madlib}}</p>
+</div>
+{% endblock %}

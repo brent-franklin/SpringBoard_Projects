@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Making Mad</title>
+<h1>Making Mad</h1>
+{% endblock %}
+
+{% block make_lib %}
+<h5>Enter a descriptor for each word to replace in your madlib</h5>
+<form id="user-story" action="/play" method="POST">
+    <h5>List of Example Descriptors</h5>
+    <ul id="example-descriptors">
+        <li>Noun</li>
+        <li>Verb</li>
+        <li>Adjective</li>
+        <li>Adverb</li>
+        <li>Plural Noun</li>
+        <li>Place</li>
+        <li>Animal</li>
+        <li>Anything you like...</li>
+    </ul>
+    {% for word in words %}
+    <div class="user-word">
+        <label for="{{word}}">{{word}}</label>
+        <br>
+        <input name="{{word}}" type="text" placeholder="Enter Type">
+    </div>
+    {% endfor %}
+    <br>
+    <button type="submit">Make Madlib</button>
+</form>
+{% endblock %}

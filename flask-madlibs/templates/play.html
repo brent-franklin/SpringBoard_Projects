@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Making Mad</title>
+<h1>Making Mad</h1>
+{% endblock %}
+
+{% block play %}
+<h5>Enter Madlib Words</h5>
+<form id="final-choice" action="/final_story" method="POST">
+{% for descriptor in descriptors %}
+    <div class="player-word">
+        <label for="{{descriptor}}">{{descriptor}}</label>
+        <br>
+        <input name="{{descriptor}}" type="text" placeholder="Enter Here">
+    </div>
+    {% endfor %}
+    <br>
+    <button type="submit">Make Madlib</button>
+</form>
+{% endblock %}

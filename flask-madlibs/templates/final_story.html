@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}
+<title>Making Mad</title>
+<h1>Making Mad</h1>
+{% endblock %}
+{% block final_story %}
+<form id="final-div" action="/">
+    <h4>Original Story</h4>
+    <p id="original-story">{{original_story}}</p>
+    <h4>Final Madlib</h4>
+    <p id="final-story">{{final_story}}</p>
+    <button id="home">Home</button>
+    <button id="replay" formaction="/story">Replay</button>
+</form>
+{% endblock %}

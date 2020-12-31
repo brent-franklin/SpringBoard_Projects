@@ -1,0 +1,406 @@
+*{
+    list-style: none;
+}
+
+html {
+  font-family: Arimo, sans-serif;
+}
+
+body {
+  margin: 8px 7.5vw;
+  background-color: #fff8dc;
+  box-shadow: 0 5px 5px 0;
+  padding: 0;
+  min-height: 800px;
+}
+
+a{
+    display: inline-block;
+}
+
+h1 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+h4 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+h5 {
+  font-size: 0.9rem;
+  font-weight: lighter;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  padding: 5px 10px;
+}
+
+.nav-link:hover {
+  text-decoration: none;
+  background-color: #444;
+  color: #fff;
+}
+
+#home-button{
+    margin: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+
+
+nav {
+  display: flex;
+  background-color: #ff6600;
+  align-items: center;
+  padding: 5px 20px;
+  border-radius: 3px 3px 0 0;
+}
+
+.inline-group {
+    display: flex;
+    
+}
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    display: absolute;
+    width: 160px;
+    background-color: #ff6600;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    left: 85%;
+    top: 105px;
+    margin-left: -32%;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 23%;
+    right: 100%;
+    margin-left: -5px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #ff6600 transparent transparent transparent;
+    transform: rotate(90deg);
+}
+
+.main-nav-links {
+  margin: 0 15px;
+}
+
+.nav-link {
+  font-size: 0.85rem;
+  margin: 5px;
+}
+
+#user-link-logout{
+    margin-left: auto;
+    margin-right: -10px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  background-color: #fff8dc;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 8px 18px 0;
+}
+
+form > * {
+  margin: 10px 0;
+}
+
+form label {
+  font-size: 1rem;
+  font-weight: 700;
+  display: inline-block;
+  width: 11rem;
+  text-align: left;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+form input {
+  font-size: 0.8rem;
+  border: none;
+  border-radius: 2px;
+  padding: 8px;
+  width: 300px;
+  box-shadow: 0 0 3px 1px lightgray;
+}
+
+form input:focus {
+  outline: none;
+  box-shadow: 0 0 4px 1px darkgray;
+}
+
+form > button {
+  width: 4rem;
+  margin: 5px 0px 15px 65px;
+  border: none;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 0.85rem;
+  background-color: lightslategray;
+  color: white;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+form > button:hover {
+  background-color: dimgray;
+}
+
+form > hr {
+  margin: 0;
+  border: 0.5px solid lightgray;
+}
+
+.login-input label {
+  width: 70px;
+}
+
+.account-form button {
+  width: 4rem;
+  margin-left: 80px;
+}
+
+#create-account-form button {
+  padding: 10px;
+  width: 8rem;
+}
+
+.articles-list {
+  margin: 20px 5px;
+}
+
+.articles-list > li {
+  color: gray;
+  font-size: 0.8rem;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.star,
+.trash-can,
+.pencil {
+  font-size: 0.75rem;
+  margin: 0 2px;
+  cursor: pointer;
+}
+
+.trash-can:hover {
+  color: crimson;
+}
+
+.pencil:hover {
+  color: darkblue;
+}
+
+.article-link > strong {
+  color: black;
+  font-size: 0.85rem;
+  font-weight: normal;
+  margin: 18px 0;
+}
+
+.article-link:hover {
+  text-decoration: none;
+}
+
+.article-hostname:hover {
+  text-decoration: underline;
+}
+
+.article-author {
+  margin-top: 5px;
+  margin-left: 25px;
+}
+
+.article-username {
+  display: block;
+  margin-top: 5px;
+  margin-left: 25px;
+}
+
+#favorited-articles,
+#filtered-articles,
+#my-articles {
+  list-style: none;
+  padding-left: 20px;
+}
+
+.account-forms-container {
+  padding-left: 20px;
+}
+
+#create-account-form button {
+  margin-bottom: 25px;
+}
+
+#user-profile {
+  padding: 10px 20px 20px;
+  max-width: 275px;
+  height: 450px;
+  font-size: 0.9rem;
+  margin: auto;
+  
+}
+
+#edit-profile {
+    width: 6rem;
+    height: 2rem;
+    background-color: #ff6600;
+    border: none;
+    margin-left: 10px;
+}
+
+#verify{
+    text-align: center;
+    text-justify: center;
+    margin: auto;
+    width: 250px;
+}
+
+.verify label{
+    margin: 0;
+    padding: 0 0 5px 0;
+    text-align: center;
+    text-justify: center;
+}
+
+#verify-button{
+    background-color: #ff6600;
+    padding: 0.7rem 4rem;
+    border: none;
+    color: #000;
+    text-align: center;
+    text-justify: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pro{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 5px;
+}
+
+input{
+    max-width: 90%;
+}
+
+/** responsive queries for tightening things up for mobile. */
+
+@media screen and (max-width: 425px) {
+  body {
+    margin: 0;
+  }
+  nav {
+      height: 150px;
+      flex-direction: column;
+  }
+
+  li{
+      text-align: left;
+  }
+  
+  .main-nav-links,
+  .nav-links{
+      text-align: center;
+      margin: auto;
+      font-size: 1.3rem;
+      margin-top: -5px;
+  }
+
+  #user-link-logout{
+      margin: auto;
+  }
+
+  #nav-all {
+      font-size: 2rem;
+      padding-top: 5px;
+  }
+
+  .nav-link{
+      font-size: 1.3rem;
+  }
+
+  .home-button > span{
+      display: none;
+  }
+
+  .home-button {
+      font-size: 1.3rem;
+      text-align: center;
+      margin-right: 4%;
+      margin-top: 10px;
+  }
+
+
+
+  #out {
+      position: absolute;
+      top: 0;
+      left: 83%;
+      padding: 10px 10px;
+      font-size: 0.8rem;
+  }
+
+  i{
+      font-size:1.1rem;
+      padding-right: 10px;
+  }
+
+  .heart{
+      margin-bottom: 80px;
+  }
+  
+  .heart::after{
+      content: "\A";
+      white-space: pre;
+  }
+
+  .article-author::before{
+      content: "\A";
+      white-space: pre;
+      clear: right;
+  }
+
+
+  #user{
+      margin-left: 30px;
+  }
+
+
+@media screen and (min-width: 950px) {
+  body {
+    max-width: 900px;
+    margin: 8px auto;
+  }
+}

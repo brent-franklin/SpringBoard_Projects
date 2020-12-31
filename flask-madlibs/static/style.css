@@ -1,0 +1,175 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: sans-serif;
+    border-radius: 5px;
+}
+
+html {
+    background-color: black;
+    color: #f4f4f4;
+}
+
+h1{
+    font-size: 5rem;
+    text-align: center;
+}
+
+h4 {
+    font-size: 3rem;
+    text-align: center;
+}
+
+h5 {
+    font-size: 2rem;
+    text-align: center;
+}
+
+button {
+    padding: 5px 10px 5px 10px;
+    background-color: white;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#madlib {
+    margin: auto;
+    font-size: 3rem;
+    text-align: center;
+}
+
+#form > div {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    margin-top: 10px;
+    width: 30%;
+}
+
+#form > button {
+    margin-top: 15px;
+    width: 10%;
+    padding: 5px;
+}
+
+#form > button:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+#sanelib {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+    padding: 5px 20%;
+    text-align: center;
+    align-content: center;
+}
+
+#sanelib > label {
+    margin: 5px;
+    padding: 3px 10px;
+    color: #000;
+}
+
+#sanelib > button:hover {
+    background-color: black;
+    color: #f4f4f4;
+}
+
+#user-story {
+    margin: 20px auto;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    width: 800px;
+}
+
+#example-descriptors {
+    display: flex;
+    padding: 10px;
+    padding-bottom: 20px;
+    border-top: 1px solid #fff;
+    justify-content: space-between;
+    width: 100%;
+    text-align: center;
+}
+
+#final-choice {
+    margin: 20px auto;
+    width: 200px;
+}
+
+#final-story,
+#original-story {
+    font-size: 3rem;
+    margin: 10px auto;
+}
+
+#final-div {
+    width: 60%;
+    text-align: center;
+    margin: auto;
+}
+
+.user-word,
+.player-word{
+    text-align: center;
+    font-size: 1.5rem;
+    padding-top: 10px;
+}
+
+.user-word > input,
+.player-word > input {
+    width: 200px;
+    margin-top: 5px;
+}
+
+#madlib-entry {
+    padding: 10px 20px;
+}
+
+body {
+    height: 750px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    padding: 5px;
+    /*background-color: #f4f4f4;*/
+}
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: #000;
+    color: white;
+    padding: 16px;
+    font-size: 2rem;
+    border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    text-align: center;
+    font-size: 2rem;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: relative;
+    min-width: 160px;
+    font-size: 3rem;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+    justify-self: center;
+}
