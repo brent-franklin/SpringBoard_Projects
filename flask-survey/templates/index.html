@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block home %}
+<form action="/sessions" method="POST">
+    <h1>Survey Center</h1>
+    <p>Please choose your survey</p>
+    <div>
+        <button name="survey" value="satisfaction" type="submit">{{surveys.satisfaction.title}}</button>
+    </div>
+     <div>
+        <button type="submit" name="survey" value="personality">{{surveys.personality.title}}</button>
+    </div>
+</form>
+{% endblock %}

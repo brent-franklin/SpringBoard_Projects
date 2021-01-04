@@ -4,14 +4,10 @@
 <h1>Making Mad</h1>
 <h4>Turn your story into a madlib!</h4>
 {% endblock %}
-{% block madlib %}
+{% block story %}
 <form id="sanelib" action="/story" method="POST">
-    <button>SUBMIT</button>
     <label for="madlib-entry">Enter Story</label>
-    <textarea name="madlib-entry" rows="4" cols="50"></textarea>
+    <textarea name="madlib-entry" rows="4" cols="50" required autofocus></textarea>
+    <button>SUBMIT</button>
 </form>
-
-<div>
-    <p id="madlib">{{madlib}}</p>
-</div>
 {% endblock %}

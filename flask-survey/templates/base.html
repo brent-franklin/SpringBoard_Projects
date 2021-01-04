@@ -6,17 +6,14 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../static/style.css">
-    {% block title %}{% endblock %}
+    <title>Survey Center</title>
 </head>
 <body>
-    {% block index %}{% endblock %}
-    {% block form %}{% endblock %}
-    {% block madlib %}{% endblock %}
-    {% block make_lib %}{% endblock %}
-    {% block play %}{% endblock %}
-    {% block final_story %}{% endblock %}
-    {% block story %}{% endblock %}
+{% for msg in get_flashed_messages() %}
+  <p>{{ msg }}</p>
+{% endfor %}
+{% block home %}{% endblock %}
+{% block questions %}{% endblock %}
+{% block thanks %}{% endblock %}
 </body>
 </html>
-
-

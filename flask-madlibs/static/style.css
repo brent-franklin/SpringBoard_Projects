@@ -13,13 +13,31 @@ html {
     color: #f4f4f4;
 }
 
+body {
+    height: 750px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+p {
+    font-size: 3rem;
+}
+
+input {
+    padding: 5px;
+    background-color: #444444;
+    color: #fff;
+}
+
 h1{
     font-size: 5rem;
     text-align: center;
 }
 
 h4 {
-    font-size: 3rem;
+    font-size: 2rem;
+    text-decoration: underline;
     text-align: center;
 }
 
@@ -29,7 +47,7 @@ h5 {
 }
 
 button {
-    padding: 5px 10px 5px 10px;
+    padding: 15px 10px 15px 10px;
     background-color: white;
     width: 100%;
     margin-top: 20px;
@@ -62,7 +80,7 @@ button {
 
 #sanelib {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     width: 100%;
     padding: 5px 20%;
     text-align: center;
@@ -73,11 +91,18 @@ button {
     margin: 5px;
     padding: 3px 10px;
     color: #000;
+
 }
 
 #sanelib > button:hover {
     background-color: black;
     color: #f4f4f4;
+}
+
+#sanelib > textarea {
+    padding: 10px 5px;
+    background-color: #444444;
+    color: #fff;
 }
 
 #user-story {
@@ -115,6 +140,19 @@ button {
     margin: auto;
 }
 
+#madlib-form {
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+    width: 200px;
+    min-height: 400px;
+    text-align: center;
+}
+
+#madlib-form > input {
+    margin: 10px;
+}
+
 .user-word,
 .player-word{
     text-align: center;
@@ -132,17 +170,6 @@ button {
     padding: 10px 20px;
 }
 
-body {
-    height: 750px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-input {
-    padding: 5px;
-    /*background-color: #f4f4f4;*/
-}
 
 /* Dropdown Button */
 .dropbtn {
@@ -162,14 +189,12 @@ input {
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
-    display: none;
-    position: relative;
+    display: block;
+    top: -100%;
     min-width: 160px;
-    font-size: 3rem;
+    font-size: 5rem;
+    width: 60%;
+    margin: 10px auto;
 }
 
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-    display: block;
-    justify-self: center;
-}
+

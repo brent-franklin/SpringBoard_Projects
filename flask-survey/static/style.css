@@ -1,0 +1,52 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+
+form {
+    width: 75%;
+    margin: 25px auto;
+    text-align: center;
+}
+
+button {
+    padding: 5px 20px;
+    margin: 10px auto;
+    max-width: 250px;
+}
+
+h1 {
+    font-size: 3rem;
+    margin: 10px auto;
+    text-align: center;
+}
+
+h4 {
+    font-size: 1.6rem;
+    text-decoration: underline;
+    text-align: center;
+}
+
+p {
+    font-size: 1.4rem;
+    margin: 10px auto;
+    text-align: center;
+    text-justify: center;
+}
+
+#thanks {
+    width: 80%;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#text {
+    width: 50%;
+    height: 50px;
+    padding: 5px;
+}

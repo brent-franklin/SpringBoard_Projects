@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block thanks %}
+<form id="thanks" action="/">
+    <h1>Thank you!</h1>
+    <h4>Here is a recap of the survey</h4>
+    <br>
+    {% for question in questions %}
+    <p>{{question.question}} {{answers[loop.index0]}}</p>
+    {% endfor %}
+    <br>
+    <button type="submit">Home</button>
+</form>
+{% endblock %}

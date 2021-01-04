@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block questions %}
+<form action="/answer" method="POST">
+    <h1>{{title}}</h1>
+    <h2>{{instructions}}</h2>
+    <h4>{{question}}</h4>
+    {% if allow_text != True %}
+    {% for choice in choices %}
+    <input type="radio" id="{{loop.index0}}" name="choice{{num}}" value="{{choice}}" onchange="this.form.submit()">
+    <label for="{{loop.index0}}"">{{choice}}</label>
+    <br>
+    {% endfor %}
+    {% endif %}
+    {% if allow_text == True %}
+    {% for choice in choices %}
+    <input type="radio" id="{{loop.index0}}" name="choice{{num}}" value="{{choice}}" required>
+    <label for="{{loop.index0}}">{{choice}}</label>
+    <br>
+    {% endfor %}
+    <label for="text"></label>
+    <textarea id="text" name="text" required></textarea>
+    <br>
+    <button>Submit</button>
+    {% endif %}
+</form>
+{% endblock %}

@@ -8,16 +8,16 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = "Secret"
 debug = DebugToolbarExtension(app)
 
-stories = {
-    "story1": """Once upon a time in a long-ago {place}, there lived a large {adjective} {noun}. It loved to {verb} {plural_noun}.""",
-    "story2": """All I {verb-ed} to do when I got {place} was boot up my {noun} and to {verb} in my {adjective} pajamas""",
-    "story3": """I heard that a {noun} that lived in the biggest {noun2} forgot to {verb} the family {plural_noun}. When will they {verb} to {verb2} effectively?"""
-}
-
+# Preset Stories
+stories = [
+  """Once upon a time in a long-ago {Place}, there lived a large {Adjective} {Noun}. It loved to {Verb} {Plural Noun}.""",
+  """All I wanted to {Verb} when I got {Place} was boot up my {Noun} and to {Verb} in my {Adjective} pajamas.""",
+  """I heard that a {Noun} that lived in the biggest {Noun 2} forgot to {Verb} the family {Plural Noun}. When will they {Verb 3} to {Verb 4} effectively?"""
+]
 
 @app.route("/")
 def base():
-    """The home page"""
+    """The base page"""
     return render_template("index.html")
 
 
@@ -51,7 +51,7 @@ story = list()  # create global list object for user story
 
 @app.route("/play", methods=["POST"])
 def play():
-    """Players time to insert descriptors"""
+    """Players will now insert descriptors"""
     story[:] = []  # empty list if there is anything initially
     s = request.form  # get user input for the user descriptors
     descriptors = list()  # create list for each descriptor to push to
@@ -60,7 +60,6 @@ def play():
         if k[0] in string.punctuation or k[-1] in string.punctuation:
             x = re.sub("[\w]*[\w]", v, k)
             if v != "":  # if item != undefined then append to descriptor and story
-                print(x)
                 story.append("{" + f"{count}: {x}" + "}")
                 descriptors.append(f"{count}: {x}")
             else:  # else append word only to story
@@ -80,19 +79,15 @@ def final_story():
     """Show final madlib"""
     global s
     global story
-    ans = request.form.to_dict()
-    words = list()
-    text = ""
+    ans = request.form.to_dict() # grab input from form
+    words = list() # create list to store values from form
+    text = "" # Move words global variable "story" into a string
     for word in story:
-        if re.match("\W", word):
-            text += word + " "
-        else:
-            text = text + word + " "
-    for key, val in ans.items():
+        text += word + " "
+    for key, val in ans.items(): # get the keys to generate story with descriptors
         words.append(key)
-    final = Story(words, text)
-    print(ans)
-    fs = final.generate(ans)
+    final = Story(words, text) # add story info
+    fs = final.generate(ans) # generate story with user input
     return render_template("final_story.html", final_story=fs, original_story=s)
 
 
@@ -101,49 +96,28 @@ def form():
     "The Form itself"
     return render_template("form.html")
 
-# @app.route("/form/<story>")
-# def story_time(story):
-#     if story == "story1":
-#         return "<h1>Test</h1>"
-#     elif story == "story2":
-#         return "<h1>TestTest</h1>"
-#     elif story == "story3":
-#         return "<h1>TestTestTest</h1>"
+words = []
+@app.route("/form/<story>")
+def story_time(story):
+    """These set up the preset madlibs, sets up 3 form options to play"""
+    global words
+    words[:] = [] # Make sure list of words is empty before setting new values
+    if story == "1":
+        words = ["Place", "Adjective", "Noun", "Verb", "Plural Noun"]
+        return render_template("form.html", Id=story, words=words)
+    elif story == "2":
+        words = ["Verb", "Place", "Noun", "Verb","Adjective"]
+        return render_template("form.html", Id=story, words=words)
+    elif story == "3":
+        words = ["Noun", "Noun 2", "Verb", "Plural Noun", "Verb 3", "Verb 4"]
+        return render_template("form.html", Id=story, words=words)
 
-# @app.route("/form/<story>", methods=["POST"])
-# def story_time(story):
-#     if story == 'story1':
-#         words = {
-#             "place": request.form["place"],
-#             "noun": request.form["noun"],
-#             "verb": request.form["verb"],
-#             "adjective": request.form["adjective"],
-#             "plural_noun": request.form["plural_noun"]
-#         }
-#         lib = Story(["place", "adjective", "noun", "verb", "plural_noun"],
-#                     """Once upon a time in a long-ago {place}, there lived a large {adjective} {noun}. It loved to {verb} {plural_noun}.""")
-#         return render_template("story.html", madlib=lib.generate(words))
-#     elif story == "story2":
-#         words = {
-#             "verb-ed": request.form["plural_noun"],
-#             "place": request.form["place"],
-#             "noun": request.form["noun"],
-#             "verb": request.form["verb"],
-#             "adjective": request.form["adjective"]
-#         }
-#         lib = Story(["verb-ed", "place", "noun", "verb", "adjective"],
-#                     """All I {verb-ed} to do when I got {place} was boot up my {noun} and to {verb} in my {adjective} pajamas""")
-#         return render_template("story.html", madlib=lib.generate(words))
-#     else:
-#         words = {
-#             "noun": request.form["noun"],
-#             "noun2": request.form["noun2"],
-#             "verb": request.form["verb"],
-#             "plural_noun": request.form["plural_noun"],
-#             "verb": request.form["verb"],
-#             "verb2": request.form["verb2"]
-#         }
-#         lib = Story(["noun", "noun2", "verb", "plural_noun", "verb", "verb2"],
-#                     """I heard that a {noun} that lived in the biggest {noun2} forgot to {verb} the family {plural_noun}. When will they {verb} to {verb2} effectively?""")
-#         return render_template("story.html", madlib=lib.generate(words))
-#
+
+@app.route("/madlib/<Id>", methods=["POST"])
+def madlib(Id):
+    """Generates madlib from preset story and user input"""
+    ans = request.form.to_dict()
+    madlib = Story(words, stories[int(Id) - 1])
+    return render_template("madlib.html", madlib=madlib.generate(ans))
+
+

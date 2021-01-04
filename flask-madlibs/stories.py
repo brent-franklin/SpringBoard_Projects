@@ -33,14 +33,11 @@ class Story:
         for (key, val) in answers.items():
             if key[0] in string.punctuation or key[-1] in string.punctuation:
                 x = re.sub("[\w]*[\w]{2}", val, key)
-                text = text.replace("{" + key + "}", x[2:] + " ")
+                text = text.replace("{" + key + "}", x[2:])
             else:
-                text = text.replace("{" + key + "}", val + " ")
+                text = text.replace("{" + key + "}", val)
 
         return text
-
-
-# Here's a story to get you started
 
 
 story = Story(
