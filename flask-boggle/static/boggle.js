@@ -4,7 +4,11 @@ class BoggleGame {
         this.$board = $("#html-board");
         this.score = 0;
         this.attempts = 0;
+<<<<<<< HEAD
         this.timer = 3;
+=======
+        this.timer = 60;
+>>>>>>> tmp
         this.countDown = setInterval(this.boggleTimer.bind(this), 1000);
         $("#submit-form").on("click", "#input-btn", this.checkInput.bind(this));
         $(".replay").on("click", this.resetGame.bind(this))
@@ -31,7 +35,11 @@ class BoggleGame {
 
     async resetGame(evt) {
         evt.preventDefault();
+<<<<<<< HEAD
         this.timer = 3;
+=======
+        this.timer = 60;
+>>>>>>> tmp
         this.score = 0;
         this.countDown = setInterval(this.boggleTimer.bind(this), 1000);
         $("#submit-form").show();
