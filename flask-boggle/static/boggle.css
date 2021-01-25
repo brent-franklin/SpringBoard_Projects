@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: Helvetica, sans-serif;
+}
+
+#html-board {
+    display: grid;
+    grid-template-areas:
+            "t t t t t"
+            "t t t t t"
+            "t t t t t"
+            "t t t t t"
+            "t t t t t";
+    grid-gap: 10px;
+    margin: 20px auto;
+    width: 400px;
+    height: 400px;
+}
+
+#html-board li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+}
+
+#submit-form {
+    margin: 20px auto;
+    text-align: center;
+    font-size: 1.4rem;
+    width: 500px;
+    justify-content: space-between;
+}
+
+#check-word {
+}
+
+#game-data {
+    display: flex;
+    justify-content: space-around;
+    width: 400px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.replay {
+    display: block;
+    margin: 20px auto;
+    width: 400px;
+}
+
+.hidden{
+    display: none;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+button {
+    padding: 3px;
+}
+
+input {
+    padding: 3px;
+}

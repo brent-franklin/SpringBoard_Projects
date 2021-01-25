@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+    <title>Boggle</title>
+    <link rel="stylesheet" href="/static/boggle.css">
+</head>
+<body>
+<section id="header">
+    <div>
+        <h4>Attempts</h4>
+        <br>
+        <p id="attempts"></p>
+    </div>
+    <h1>Boggle</h1>
+    <div>
+        <h4>High Score</h4>
+        <br>
+        <p id="high-score"></p>
+    </div>
+</section>
+<ul id="html-board">
+    {% for row in board %}
+    {% for letter in row %}
+    <li>{{letter}}</li>
+    {% endfor %}
+    {% endfor %}
+</ul>
+<form id="submit-form" method="POST">
+    <input id="user-input" name="user-input" type="text" placeholder="Enter Answers" autocomplete="off" autofocus required>
+    <button id="input-btn" type="submit">Submit Answer</button>
+</form>
+<form>
+<button class="replay hidden">Replay</button>
+</form>
+<section id="game-data">
+    <div id="check-word">
+        <h4>Response</h4>
+        <p></p>
+    </div>
+    <div id="score">
+        <h4>Score</h4>
+        <p>0</p>
+    </div>
+    <div id="timer">
+        <h4>Timer</h4>
+        <p>60</p>
+    </div>
+</section>
+<script src="http://unpkg.com/jquery"></script>
+<script src="https://unpkg.com/axios@0.19.0/dist/axios.js"></script>
+<script src="/static/boggle.js"></script>
+</body>
+</html>
