@@ -22,12 +22,36 @@ class MarkovMachine {
 
   // Load text into the Markov Machine
 
+<<<<<<< HEAD
   loadText(text) {
     if(typeof text !== 'string') return console.error("Only string/text input accepted, please load text with loadText Option")
     let words = text.split(/[ \r\n]+/);
     this.words = words.filter(c => c !== "");
     console.log("Markov Machine ready to generate a chain!")
   }
+=======
+  loadText(text, url) {
+    if(typeof text !== 'string') return console.error("Only string/text input accepted, please load text with loadText Option")
+    if(!url){
+      const wordsArr = text.split(/[ \r\n]+/);
+      this.words = wordsArr.filter(c => c !== "");
+    } else {
+      const wordsArr = text.split(/\s/);
+      this.words = wordsArr.filter(c => c !== "");
+    }
+
+      this.sentences = this.words.join(' ').match(/[^\.!\?]+[\.!\?]+/g);
+      if (!this.sentences){
+        this.startWord = this.words[Math.floor((Math.random() * (this.words.length-1))+1)];
+      } else {
+        let startArr = this.sentences[Math.floor(Math.random() * this.sentences.length)].split(/\s/).splice(1);
+        if(startArr.length < 2) return this.loadText(text);
+        this.startWord = startArr[0] === '' ? startArr[1] : startArr[0];
+        this.startBigram = startArr[0] === '' ? `${startArr[1]} ${startArr[2]}` : `${startArr[0]} ${startArr[1]}`
+        console.log("Markov Machine ready to generate a chain!")
+      }
+ }
+>>>>>>> d08f58786e71cfedb16537c23a77ebfdd6f944d2
 
   /** set markov chains:
    *
@@ -67,9 +91,18 @@ class MarkovMachine {
   generateText(numWords = 100) {
     if(!this.chains) return console.error('Please generate chain or bigram with generateChains or generateBigram options');
     const markovOutput = [];
+<<<<<<< HEAD
     const keys = [...this.chains.keys()];
     let choice = keys[Math.floor(Math.random() * keys.length)];
     if(this.bigram){
+=======
+    if (!this.startBigram) {
+      this.bigram = false;
+      this.generateChains();
+    }
+    if(this.bigram){
+    let choice = this.startBigram;
+>>>>>>> d08f58786e71cfedb16537c23a77ebfdd6f944d2
       while (markovOutput.length <= numWords && !choice.includes(null)){
         let [key1, key2] = choice.split(" ");
         markovOutput.push(key1);
@@ -77,6 +110,10 @@ class MarkovMachine {
         choice = key2 + " " + newChoice[Math.floor(Math.random() * newChoice.length)];
       }
     } else {
+<<<<<<< HEAD
+=======
+    let choice = this.startWord;
+>>>>>>> d08f58786e71cfedb16537c23a77ebfdd6f944d2
       while (markovOutput.length <= numWords && choice !== null){
         markovOutput.push(choice);
         const newChoice = this.chains.get(choice);
@@ -88,6 +125,11 @@ class MarkovMachine {
 
 }
 
+<<<<<<< HEAD
+=======
+// makeText.js will not work if these are not uncommented
+
+>>>>>>> d08f58786e71cfedb16537c23a77ebfdd6f944d2
 // const mm = new MarkovMachine("the cat in the hat is in the hat");
 // const bg = new MarkovMachine("the cat in the hat is in the hat", true);
 
