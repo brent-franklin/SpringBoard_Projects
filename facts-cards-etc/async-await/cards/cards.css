@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: ariel, sans-serif;
+  margin: 5px;
+  padding: 0;
+}
+
+body {
+  background-color: green;
+  text-align: center;
+}
+
+#btn {
+  padding: 10px 20px;
+  border-radius: 2px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+}
+
+button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+#cards {
+  position: relative;
+  max-width: 400px;
+  height: 400px;
+  margin: auto;
+}
+
+.card {
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
