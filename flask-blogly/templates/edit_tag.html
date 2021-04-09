@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block edit_tag %}
+<h1 class="text-center">Edit Tag</h1>
+{% for msg in get_flashed_messages() %}
+<p class="text-danger text-center">{{ msg }}</p>
+{% endfor %}
+<form class="container form mx-auto">
+    <div class="form-group">
+        <label for="tag_name">Tag Name:</label>
+        <input type="text" value="{{tag.name}}" class="form-control" name="tag_name" id="tag_name"
+            placeholder="Enter tag name">
+    </div>
+    <button class="btn btn-primary" formmethod="POST" formaction="/edit_tag/{{tag.id}}">Edit Tag</button>
+    <button class="btn btn-secondary" formmethod="GET" formaction="/tag_detail/{{tag.id}}">Cancel</button>
+</form>
+{% endblock %}

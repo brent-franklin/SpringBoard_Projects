@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}New Customer{% endblock %}
+{% block content %}
+<h1>Add a Customer</h1>
+
+<form action="/add/" method="POST">
+  <div class="form-group">
+    <label for="first-name">First Name: </label>
+    <input id="first-name" class="form-control" name="firstName" required placeholder="First Name">
+  </div>
+  <div class="form-group">
+    <label for="middle-name">Middle Name:</label>
+    <input id="middle-name" class="form-control" name="middleName" placeholder="Middle Name (optional)">
+  </div>
+  <div class="form-group">
+    <label for="last-name">Last Name:</label>
+    <input id="last-name" class="form-control" name="lastName" required placeholder="Last Name">
+  </div>
+  <div class="form-group">
+    <label for="phone">Phone:</label>
+    <input id="phone" class="form-control" name="phone" required placeholder="XXX-XXX-XXXX">
+  </div>
+  <div class="form-group">
+    <label for="notes">Notes:</label>
+    <textarea id="notes" class="form-control" name="notes" placeholder="Notes (optional)"></textarea>
+  </div>
+  <button class="btn btn-primary">Add</button>
+  <a href="/" class="btn btn-danger">Cancel</a>
+</form>
+
+{% endblock %}

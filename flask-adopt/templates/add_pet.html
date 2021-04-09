@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block add_pet %}
+<h2 class="text-center">Add Pet to Listings</h2>
+{% for msg in get_flashed_messages() %}
+<p class="text-danger text-center">{{ msg }}</p>
+{% endfor %}
+<form action="/add_pet" class="conatiner w-50 form mx-auto">
+    {{ form.hidden_tag() }}
+
+    {% for field in form
+    if field.widget.input_type != 'hidden' %}
+
+    <div class="form-group">
+        {{ field.label }}
+        {{ field(class="form-control") }}
+
+        {% for error in field.errors %}
+        <small class="text-danger">
+            {{ error }}
+        </small>
+        {% endfor %}
+    </div>
+
+    {% endfor %}
+    <button class="btn btn-primary" formmethod="POST" formaction="/add">Add Listing</button>
+    <a href="/" class="btn btn-secondary">Cancel</a>
+</form>
+
+
+{% endblock %}

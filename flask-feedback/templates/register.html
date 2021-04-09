@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block register %}
+
+<h1 class="text-center mb-4">Register</h1>
+<form method="POST" class="form w-75 mx-auto">
+    <p>
+        <small>Please enter your information to register</small>
+    </p>
+    {{form.hidden_tag()}}
+
+    {% for field in form.errors %}
+    <div class="alert alert-danger">{{ field }}:
+        <ul>
+            {% for error in form.errors[field] %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+
+    {% for field in form if field.widget.input_type != 'hidden' %}
+
+    <div class="form-group row">
+        {{field.label(class="col-sm-2 col-form-label")}}
+        <div class="col-sm-10">
+            {{field(class="form-control")}}
+        </div>
+    </div>
+
+    {% endfor %}
+
+    <button class="btn btn-primary d-block w-10 ml-auto">Register</button>
+</form>
+
+{% endblock %}

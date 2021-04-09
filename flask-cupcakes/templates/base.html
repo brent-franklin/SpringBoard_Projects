@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Cupcakes</title>
+</head>
+
+<body>
+    <h1 class="text-center">Cupcakes</h1>
+
+    <button id=delete class="d-block w-25 mx-auto btn btn-danger">Delete Cupcake</button>
+    <form id="cupcake-form" class="conatiner w-50 form mx-auto">
+        {{ form.hidden_tag() }}
+
+        {% for field in form
+        if field.widget.input_type != 'hidden' %}
+
+        <div class="form-group">
+            {{ field.label }}
+            {{ field(class="form-control") }}
+
+            {% for error in field.errors %}
+            <small class="text-danger">
+                {{ error }}
+            </small>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        <div class="d-flex justify-content-between">
+            <button class="btn btn-primary">Add Cupcake</button>
+        </div>
+
+        </div>
+    </form>
+
+    <form id="cupcake-search-form" class="conatiner w-50 form mt-2 mx-auto">
+        {{ search_form.hidden_tag() }}
+
+        {% for field in search_form
+        if field.widget.input_type != 'hidden' %}
+
+        <div class="form-group">
+            {{ field.label }}
+            {{ field(class="form-control") }}
+
+            {% for error in field.errors %}
+            <small class="text-danger">
+                {{ error }}
+            </small>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        <div class="d-flex justify-content-between">
+            <div class="d-flex">
+                <button class="btn btn-secondary">Search Cupcakes</button>
+            </div>
+        </div>
+
+        </div>
+    </form>
+
+    <button id="all-cupcakes" class="btn btn-secondary d-block mx-auto mt-3">All Cupcakes</button>
+    <ul id="cupcake-list" class="list-unstyled w-25 text-center mx-auto mt-3 d-flex flex-column"></ul>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0-0/axios.js"></script>
+    <script src="/static/cupcakes.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block pet_listings %}
+<h1 class="text-center">Pet Adoption</h1>
+<div class="d-flex w-25 flex-column mb-3 mx-auto">
+    <h4 class="text-center">Available Pets</h4>
+    <a href="/add" class="btn btn-primary text-center">Add New Pet</a>
+</div>
+{% for pet in pets %}
+<div class="card mx-auto mb-2" style="width: 10rem;">
+    {% if pet.photo_url == '' %}
+    <img class="card-img-top"
+        src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.activityvillage.co.uk%2Fsites%2Fdefault%2Ffiles%2Fimages%2Frabbit_writing_frame_460_1.jpg&f=1&nofb=1"
+        alt="Image for available pet">
+    {% else %}
+    <img class="card-img-top" src="{{pet.photo_url}}" alt="Image for available pet">
+    {% endif %}
+    <div class="card-body">
+        <h5 class="card-title">{{pet.name}}</h5>
+        <p class="card-text">{{pet.notes}}</p>
+        {%if pet.available == True%}<p>
+            <strong>Available</strong>
+        </p>{% endif %}
+    </div>
+    <a href="/pet/{{pet.id}}" class="btn btn-primary">Pet Details</a>
+</div>
+{% endfor %}
+
+
+
+
+
+{% endblock %}

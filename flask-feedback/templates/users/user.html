@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block users %}
+<form method="GET" action="/users/{{user.username}}/delete">
+    <button class="btn btn-danger d-block w-25 mx-auto">Delete User</button>
+</form>
+<br>
+<h1 class="text-center mb-4">Profile Details</h1>
+<h4 class="text-center mb-2">{{user.username}}</h4>
+<ul class="list-unstyled text-center mx-auto">
+    <li>First Name: {{user.first_name}}</li>
+    <li>Last Name: {{user.last_name}}</li>
+    <li>Email: {{user.email}}</li>
+</ul>
+<a href="/users/{{user.username}}/feedback/add" class="btn btn-primary d-block w-25 mx-auto">Add Feedback</a>
+
+<ul class="list-unstyled d-flex flex-column text-center">
+    {% for feedback in user.feedback %}
+    <h3 class="mt-4 text-uppercase mb-2">{{feedback.title}}</h3>
+    <p class="mb-2">{{feedback.content}}</h3>
+    <div class="d-flex justify-content-center w-50 mx-auto">
+        <a class="btn btn-primary btn-sm mr-1" href="/feedback/{{feedback.id}}/update">Edit
+            Feedback</a>
+        <a class="btn btn-danger btn-sm ml-2" href="/feedback/{{feedback.id}}/delete">Delete
+            Feedback</a>
+    </div>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}

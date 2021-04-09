@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}{{ customer.fullName }}{% endblock %}
+
+{% block content %}
+
+
+
+<div class="row justify-content-around">
+
+  <div class="col-5">
+
+    <h3>{{ customer.fullName }}</h3>
+    <p><b>Phone: </b> {{ customer.phone }}</p>
+    <p><b>Notes: </b>{{ customer.notes }}</p>
+
+    <p><a class="btn btn-primary" href="/{{ customer.id }}/edit/">Edit</a></p>
+
+    <h4>Reservations</h4>
+    {% if reservations %}
+    <ul class="container">
+      {% for reservation in reservations %}
+      <li class="mb-3 row"><strong class="col">{{ reservation.startAt }} for {{ reservation.numGuests
+          }}</strong> <a class="btn btn-primary btn-sm" href="/{{customer.id}}/{{reservation.id}}">Edit</a></li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>None!</p>
+    {% endif %}
+  </div>
+
+  <div class="col-4 align-self-end">
+    <h4>New Reservation</h4>
+    <form action="/{{ customer.id }}/add-reservation/" method="POST">
+      <div class="form-group">
+        <label for="start">Start</label>
+        <input id="start" class="form-control" name="startAt" placeholder="yyyy-mm-dd hh:mm am/pm">
+      </div>
+      <div class="form-group">
+        <label for="num-guests"># of Guests:</label>
+        <input class="form-control" value="2" name="numGuests" type="number" id="num-guests">
+      </div>
+      <div class="form-group">
+        <label for="notes">Notes:</label>
+        <textarea class="form-control" name="notes" id="notes"></textarea>
+      </div>
+      <button class="btn btn-primary">Add</button>
+    </form>
+  </div>
+
+</div>
+
+{% endblock %}

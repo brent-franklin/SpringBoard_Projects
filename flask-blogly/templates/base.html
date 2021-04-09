@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Blogly</title>
+</head>
+<h1 class="text-center"><a style="text-decoration: none" href="/">Blogly</a></h1>
+
+<body>
+    {% block recent_posts %}{% endblock %}
+    {% block users %}{% endblock %}
+    {% block create_user %}{% endblock %}
+    {% block user_detail %}{% endblock %}
+    {% block edit_user %}{% endblock %}
+    {% block create_post %}{% endblock %}
+    {% block post_detail %}{% endblock %}
+    {% block edit_post %}{% endblock %}
+    {% block page_not_found %}{% endblock %}
+    {% block create_tag %}{% endblock %}
+    {% block tags_list %}{% endblock %}
+    {% block edit_tag %}{% endblock %}
+    {% block tag_detail %}{% endblock %}
+</body>
+
+</html>

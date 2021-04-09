@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block edit_user %}
+<h1 class="text-center">Edit User Details</h1>
+{% for msg in get_flashed_messages() %}
+<p class="text-danger text-center">{{ msg }}</p>
+{% endfor %}
+<form class="container form mx-auto" method="POST">
+    <div class="form-group">
+        <label for="first_name">First Name:</label>
+        <input type="text" value="{{user.first_name}}" class="form-control" name="first_name" id="first_name"
+            placeholder="Enter your first name">
+    </div>
+    <div class="form-group">
+        <label for="last_name">Last Name:</label>
+        <input type="text" value="{{user.last_name}}" class="form-control" name="last_name" id="last_name"
+            placeholder="Enter your last name">
+    </div>
+    <div class="form-group">
+        <label for="img_url">Image: (optional)</label>
+        <input type="url" value="{{user.img_url}}" class="form-control" name="img_url" id="img_url"
+            placeholder="Enter your profile image URL">
+    </div>
+    <button class="btn btn-primary" formmethod="POST" formaction="/edit_user/{{user.id}}">Edit</button>
+    <button class="btn btn-secondary" formmethod="GET" formaction="/user_detail/{{user.id}}">Cancel</button>
+</form>
+
+
+
+{% endblock %}

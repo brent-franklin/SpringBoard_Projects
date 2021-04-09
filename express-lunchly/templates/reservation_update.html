@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}{{ customer.fullName }}{% endblock %}
+
+{% block content %}
+
+
+
+<div class="col-6 m-auto">
+    <h1>{{ customer.fullName }}</h1>
+    <h3>Update Reservation</h3>
+    <form action="/{{ reservation.id }}/update-reservation/" method="POST">
+        <div class="form-group">
+            <label for="start">Start: {{ reservation.startAt }}</label>
+            <input id="start" class="form-control" name="startAt" placeholder="yyyy-mm-dd hh:mm am/pm">
+        </div>
+        <div class="form-group">
+            <label for="num-guests"># of Guests: {{reservation.numGuests}}</label>
+            <input class="form-control" value="2" name="numGuests" type="number" id="num-guests">
+        </div>
+        <div class="form-group">
+            <label for="notes">Notes: {{reservation.notes}}</label>
+            <textarea class="form-control" name="notes" id="notes"></textarea>
+        </div>
+        <button class="btn btn-primary">Update</button>
+    </form>
+</div>
+
+
+{% endblock %}

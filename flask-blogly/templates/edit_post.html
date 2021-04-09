@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block edit_post %}
+<h1 class="text-center">Edit Post</h1>
+{% for msg in get_flashed_messages() %}
+<p class="text-danger text-center">{{ msg }}</p>
+{% endfor %}
+<form class="container form mx-auto" method="POST">
+    <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" value="{{post.title}}" class="form-control" name="title" id="title"
+            placeholder="Enter title">
+    </div>
+    <div class="form-group">
+        <label for="content">Content:</label>
+        <textarea type="text" class="form-control" rows="3" name="content" id="content"
+            placeholder="What's on your mind">{{post.content}}</textarea>
+    </div>
+    <div class="container">
+        <h5>Tags:</h5>
+        {% for tag in tags %}
+        {% if post.tags[loop.index0] %}
+        <label for="{{tag.name}}">{{tag.name}} <input type="checkbox" id={{tag.name}} value={{tag.id}} name="tags"
+                checked>
+            {% else %}
+
+            <label for="{{tag.name}}">{{tag.name}} <input type="checkbox" id={{tag.name}} value={{tag.id}} name="tags">
+                {% endif %}
+                {% endfor %}
+    </div>
+    <br>
+    <button class="btn btn-primary" name="user" value="{{post.user_id}}" formmethod="POST"
+        formaction="/edit_post/{{post.id}}">Edit Post</button>
+    <button class="btn btn-secondary" formmethod="GET" formaction="/post_detail/{{post.id}}">Cancel</button>
+</form>
+{% endblock %}

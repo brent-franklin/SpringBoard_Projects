@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block recent_posts %}
+<h2 class="text-center mt-3">Bogly Recent Posts</h2>
+<div class="d-flex">
+    <a class="btn btn-primary d-block w-25 mx-auto" href="/users">Users Page</a>
+    <a class="btn btn-primary d-block w-25 mx-auto" href="/tag_list">Tags Page</a>
+</div>
+{% for post in posts %}
+<div class="container mx-auto mt-3 p-2 border border-primary rounded" style="width:30rem">
+    <h4 class="text-dark">{{post.title}}</h4>
+    <hr>
+    <blockquote>{{post.content}}</blockquote>
+    <span><small>-{{users[loop.index0].full_name()}} {{post.create_at}}</small></span>
+    <h6>Tags:</h6>
+    <ul class="d-flex flex-wrap list-unstyled">
+        {% for t in tags[loop.index0] %}
+        <li class="border bg-primary border-rounded pl-1 pr-1 ml-2 mt-1"><a href="/tag_detail/{{t.tag.id}}"
+                class="text-white">{{t.tag.name}}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endfor %}
+{% endblock %}

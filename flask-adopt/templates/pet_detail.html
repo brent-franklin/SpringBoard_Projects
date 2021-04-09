@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block pet_details %}
+<h1 class="text-center">User Details</h1>
+{% for msg in get_flashed_messages() %}
+<p class="text-danger text-center">{{ msg }}</p>
+{% endfor %}
+<form class="card mx-auto" style="width:22rem">
+    {% if pet.photo_url == '' %}
+    <img class="card-img-top"
+        src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.activityvillage.co.uk%2Fsites%2Fdefault%2Ffiles%2Fimages%2Frabbit_writing_frame_460_1.jpg&f=1&nofb=1"
+        alt="Image for available pet">
+    {% else %}
+    <img class="card-img-top" src="{{pet.photo_url}}" alt="Image for available pet">
+    {% endif %}
+    <div class="card-body text-center">
+        <small>{{pet.species}}</small>
+        <h4 class="card-title">{{pet.name}}</h4>
+        {% if pet.available %}
+        <h3 class="card-title">Available!</h3>
+        {% else %}
+        <h3 class="card-title">Recently Adopted</h3>
+        {% endif %}
+        <form action="/add_pet" class="conatiner w-50 form mx-auto">
+            {{ pet_edit_form.hidden_tag() }}
+
+            {% for field in pet_edit_form
+            if field.widget.input_type != 'hidden' %}
+
+            <div class="form-group">
+                {{ field.label }}
+                {{ field(class="form-control") }}
+
+                {% for error in field.errors %}
+                <small class="text-danger">
+                    {{ error }}
+                </small>
+                {% endfor %}
+            </div>
+            {% endfor %}
+            <button class="btn btn-secondary" formmethod="GET" formaction="/">Home</button>
+            <button class="btn btn-primary" formmethod="POST" formaction="/pet_edit/{{pet.id}}">Update</button>
+    </div>
+</form>
+
+{% endblock %}
