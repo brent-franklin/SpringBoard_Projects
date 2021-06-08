@@ -3,8 +3,10 @@
 const messagesFrom = document.querySelector("#messages");
 const sendWarbleBtn = document.querySelector("#sendWarble");
 const warbleForm = document.querySelector(".modal-body form");
-const warbleInput = document.querySelector("#text").value;
-const csrfToken = document.querySelector("#csrf_token").value;
+const fields = {
+  warbleInput: document.querySelector("#text"),
+  csrf_token: document.querySelector("#csrf_token"),
+};
 
 async function changeToThumbsUp(likeBtn) {
   response = await axios.post(
@@ -19,6 +21,7 @@ async function changeToStar(likeBtn) {
 }
 
 async function handleLike(evt) {
+  if (evt.target.innerText == "Delete") return;
   let likeBtn;
   if (evt.target.classList.contains("btn")) {
     evt.preventDefault();
@@ -27,6 +30,8 @@ async function handleLike(evt) {
     evt.preventDefault();
     likeBtn = evt.target;
   }
+
+  if (!likeBtn) return;
 
   likeBtn.classList.toggle("fa-thumbs-up");
   likeBtn.classList.toggle("fa-star");
@@ -40,7 +45,7 @@ async function handleLike(evt) {
   }
 }
 
-messagesFrom.addEventListener("click", handleLike);
+messagesFrom?.addEventListener("click", handleLike);
 
 // Message model from bootstrap
 
@@ -52,16 +57,31 @@ $("#messageModal").on("show.bs.modal", function (event) {
 
 async function sendWarble(evt) {
   evt.preventDefault();
-  const response = await axios.post({
-    url: "http://localhost:5000/messages/new",
+  const response = await axios.post("http://localhost:5000/messages/new", {
     headers: {
-      csrf_token: csrfToken,
+      "Content-Type": "application/json",
     },
-    data: {
-      text: warbleInput,
-    },
+    body: JSON.stringify({
+      csrf_token: fields.csrf_token.value,
+      text: fields.warbleInput.value,
+    }),
   });
-  console.log(response);
+  createMsgElement(response.data.msg, response.data.user);
+  fields.warbleInput.value = "";
 }
 
-sendWarbleBtn.addEventListener("click", sendWarble);
+function createMsgElement(msg, user) {
+  const $text = $(`<li class="list-group-item">
+        <a href="/messages/${msg.id}" class="message-link">
+        </a><a href="/users/${msg.user_id}">
+          <img src="/static/images/default-pic.png" alt="" class="timeline-image">
+          </a><div class="message-area"><a href="/users/${msg.user_id}">
+            </a><a href="/users/${msg.user_id}">${user}</a>
+            <span class="text-muted">${msg.timestamp}</span>
+            <p>${msg.text}</p>
+          </div>
+      </li>`);
+  const $messagesForm = $("#messages");
+  $messagesForm.prepend($text[0].outerHTML);
+}
+sendWarbleBtn?.addEventListener("click", sendWarble);

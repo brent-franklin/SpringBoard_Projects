@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS messages;
 
 CREATE TABLE users (
@@ -6,9 +6,10 @@ CREATE TABLE users (
     password text NOT NULL,
     first_name text NOT NULL,
     last_name text NOT NULL,
-    phone text NOT NULL,
+    phone text UNIQUE NOT NULL,
     join_at timestamp without time zone NOT NULL,
-    last_login_at timestamp with time zone
+    last_login_at timestamp with time zone,
+    last_page text
 );
 
 CREATE TABLE messages (
@@ -19,3 +20,5 @@ CREATE TABLE messages (
     sent_at timestamp with time zone NOT NULL,
     read_at timestamp with time zone
 );
+
+

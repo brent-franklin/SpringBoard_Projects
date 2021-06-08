@@ -3,6 +3,7 @@ import os
 from flask import Flask, render_template, request, flash, redirect, session, jsonify, g
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
+import json
 
 from forms import UserAddForm, LoginForm, MessageForm, UserEditForm
 from models import db, connect_db, User, Message, Likes, Follows
@@ -289,25 +290,19 @@ def messages_add():
 
     Show form if GET. If valid, update message and redirect to user page.
     """
-    print("test")
 
     if not g.user:
         flash("Access unauthorized.", "danger")
-        return jsonify({"success": "success"})
+        return redirect("/")
 
-    form = MessageForm()
-
-    if form.validate_on_submit():
-        print("test")
+    form = MessageForm(**(json.loads(request.json['body'])))
+    if form.validate():
         msg = Message(text=form.text.data)
         g.user.messages.append(msg)
         db.session.commit()
 
-        return jsonify({"success": "success2"})
-        # return redirect(f"/users/{g.user.id}")
-
-    return jsonify({"success": "success1"})
-    # return render_template('messages/new.html', form=form)
+        serialized = msg.serialize()
+        return jsonify(msg=serialized, user=g.user.username)
 
 
 @app.route('/messages/<int:message_id>', methods=["GET"])
@@ -366,8 +361,7 @@ def homepage():
 def error_404(err):
     """Show 404 error page"""
 
-    return jsonify({"success": "success3"})
-    # return render_template('error_404.html', err=err)
+    return render_template('error_404.html', err=err)
 
 
 ##############################################################################

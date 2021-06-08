@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/cart.css">
+    <title>Shopping Cart</title>
+</head>
+
+<body>
+    <section id="container">
+        <form id="form">
+            <h1>Add to Cart</h1>
+            <label for="item">Item</label>
+            <input type="text" name="item" id="item" placeholder="Enter Name" required>
+            <label for="price">Price</label>
+            <input type="number" name="price" id="price" placeholder="Enter Price" min="0" step="0.01" required>
+            <button id="btn" type="submit">Add to Cart</button>
+        </form>
+        <form id="search-form">
+            <h1>Single Item Search</h1>
+            <label for="search">Item</label>
+            <input type="text" name="item" id="search" placeholder="Enter Name">
+            <button id="search-btn" type="submit">Search</button>
+        </form>
+        <div id="result">
+            <h3>Results</h3>
+            <div></div>
+        </div>
+        <div id="cart">
+            <h3>Cart <button>Refresh Cart</button></h3>
+            <ul></ul>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0-0/axios.min.js"></script>
+    <script type="text/javascript" src="/requests.js"></script>
+    <script type="text/javascript" src="/cart.js"></script>
+</body>
+
+</html>

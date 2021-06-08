@@ -1,0 +1,209 @@
+Favicon Ignore
+app.get('/favicon.ico', (req, res) => res.statusCode(204))
+
+********************************************************
+
+JWT Login
+
+const express = require('express');
+const router = express.Router();
+const bcrypt = require('bcrypt');
+const db = require('../db');
+const jwt = require('jsonwebtoken');
+const { ExpressError } = require('../expressError');
+const { SECRET_KEY } = require("../config");
+
+router.post('/login', async (req, res, nest) => {
+    try {
+        const { username, password } = req.body;
+        const result = await db.query("SELECT password FROM user WHERE username = $1", 
+        [username]);
+        let user = result.rows[0];
+
+        if (user) {
+            if (await bcrypt.compare(password, user.password) === true) {
+                let token = jwt.sign({ username }, SECRET_KEY);
+                return res.json({ token });
+            }
+        }
+        throw new ExpressError("Invalid user/password", 400);
+    } catch (err) {
+        return next(err);
+    }
+})
+
+********************************************************
+
+Authenticate JWT
+
+function authenticateJWT(req, res, next){
+    try {
+        const tokenFromBody = req.body._token;
+        const payload = jwt.verify(tokenFromBody, SECRET_KEY);
+        req.user = payload;
+        return next();
+    } catch (err) {
+        return next();
+    }
+}
+
+Use as middleware to authenticateJWT
+
+app.use(authenticateJWT);
+
+********************************************************
+
+Check if Logged in
+
+function checkLoggedIn(req, res, next){
+    if (!req.user) {
+        const e = new ExpressError("Unauthorized", 401);
+        return next(e);
+    } else {
+        return next();
+    }
+}
+
+********************************************************
+
+Morgan to show more info on each call to the express server
+
+const morgan = require('morgan')
+
+app.use(morgan('dev'))
+
+********************************************************
+
+Basic Routs
+
+http - urlencoded forms
+app.httpVerb('/route', (req, res, next) => res.send())
+
+json - application/json
+app.httpVerb('/route', (req, res, next) => res.json())
+
+********************************************************
+
+Middleware
+
+const middleware = require('./middleware')
+
+app.use('/route', module)
+app.use(func)
+app.use(middleware.func)
+
+********************************************************
+
+Routes with Middleware
+
+const middleware = require('./middleware')
+
+app.httpVerb('/route', middleware.func, (req, res, next) => res.send())
+
+********************************************************
+
+Chain Events with next()
+
+Errors: next(err) move to app.use(func(err, req, res, next))
+Routes: next() move to app.use(func(req, res, next))
+
+Example:
+function func(req, res, next){
+    try{
+        //your code
+        return next()
+    } catch(err) {
+        return next(err)
+    }
+}
+
+
+********************************************************
+
+Postgres db + router
+
+const express = require('express')
+const router = express.Router();
+const db = require('../db')
+
+router.get('/', async (req, res, next) =>{
+    try {
+        const results = await db.query(`SELECT * FROM table`);
+        if (!!result){
+            return res.json(results.rows);
+        } else {
+            return next();
+        }
+    } catch(err) {
+        return next(err);
+    }
+})
+
+module.exports = router;
+
+********************************************************
+
+Import Routes
+
+const myRoutes = require('../filePath')
+
+app.use('/routePrefix', myRoutes)
+
+********************************************************
+
+RESTful Conventions
+
+/get = get all
+response = 200 OK with json describing items found
+
+/get/:id = get specific item
+response = 200 OK with json describing specific item found
+
+/post = create item
+response = 201 CREATED with json describing created item
+
+/put/:id = update entire item
+response = 200 OK with json describing updated item
+
+/patch/:id = update part of the item
+response = 200 OK with json describing updated item
+
+/delete/:id = delete specific item
+response = 200 OK with json describing deletion
+
+********************************************************
+
+Nested Routes
+
+HTTP Verb    /Route
+Response
+
+GET	/businesses	
+Get info about all businesses
+
+GET	/businesses/[biz-id]	
+Get info about business
+
+POST	/businesses	
+Create busines
+
+PUT / PATCH	/businesses/[biz-id]	
+Update business
+
+DELETE	/businesses/[biz-id]	
+Delete business
+
+GET	/businesses/[biz-id]/reviews	
+Display all reviews for business
+
+GET	/businesses/[biz-id]/reviews/[rev-id]	
+Display review for business
+
+POST	/businesses/[biz-id]/reviews	
+Create review for business
+
+PUT / PATCH	/businesses/[biz-id]/reviews/[rev-id]	
+Update review for business
+
+DELETE	/businesses/[biz-id]/reviews/[rev-id]	
+Delete review for business

@@ -234,6 +234,14 @@ class Message(db.Model):
 
     user = db.relationship('User')
 
+    def serialize(self):
+        return {
+            "id": self.id,
+            "text": self.text,
+            "timestamp": self.timestamp.strftime('%d %B %Y'),
+            "user_id": self.user_id,
+        }
+
 
 def connect_db(app):
     """Connect this database to provided Flask app.

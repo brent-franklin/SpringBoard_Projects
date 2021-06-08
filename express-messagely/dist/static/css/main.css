@@ -1,0 +1,118 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  line-height: 1.3rem;
+  color: #ebe0d0;
+}
+
+body {
+  background-color: #232323;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+}
+nav .logo {
+  width: 5rem;
+  padding: 10px;
+  text-align: center;
+  text-justify: center;
+}
+nav ul {
+  display: flex;
+}
+nav ul li {
+  text-transform: uppercase;
+  width: 5rem;
+  padding: 10px;
+  text-align: center;
+  text-justify: center;
+  color: #ebe0d0;
+}
+nav ul li:hover {
+  background-color: #ebe0d0;
+}
+nav ul li:hover a {
+  color: #000;
+}
+
+#welcome-section {
+  width: 100%;
+  height: calc(100vh - 50px);
+  display: flex;
+}
+#welcome-section #welcome {
+  margin: auto;
+  text-transform: uppercase;
+  color: #ec9ec0;
+}
+
+#login-section {
+  width: 100%;
+  height: calc(100vh - 50px);
+}
+#login-section form {
+  display: flex;
+  flex-direction: column;
+  height: 15rem;
+  width: 25rem;
+  margin: auto;
+  justify-content: center;
+  height: calc(100vh - 150px);
+}
+#login-section form #login-form,
+#login-section form #registration-form {
+  border: 7px solid #ec9ec0;
+  border-radius: 25px;
+  justify-content: space-between;
+  padding: 15px;
+}
+#login-section form #login-form h2,
+#login-section form #registration-form h2 {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  text-align: center;
+}
+#login-section form #login-form .form-group,
+#login-section form #registration-form .form-group {
+  display: flex;
+  justify-content: space-around;
+}
+#login-section form #login-form .form-group input,
+#login-section form #registration-form .form-group input {
+  width: 60%;
+  padding: 7px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  color: #232323;
+  background-color: #e4e4e4;
+}
+#login-section form #login-form .form-group label,
+#login-section form #registration-form .form-group label {
+  font-size: 0.7rem;
+  width: 20%;
+  align-self: center;
+}
+#login-section form .btn-primary {
+  text-transform: uppercase;
+  background-color: #ec9ec0;
+  width: 10rem;
+  border-radius: 5px;
+  border: none;
+}
+#login-section form .btn-login {
+  display: block;
+  margin: 10px auto;
+  color: #232323;
+}
+#login-section form .btn-login:hover {
+  background-color: #ff0080;
+}
+
+/*# sourceMappingURL=main.css.map */
