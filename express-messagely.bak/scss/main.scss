@@ -1,0 +1,125 @@
+@import "config";
+@import "utilities";
+
+body {
+  background-color: $background-color;
+}
+
+// Navbar
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+
+  .logo {
+    width: 5rem;
+    padding: 10px;
+    text-align: center;
+    text-justify: center;
+  }
+
+  ul {
+    display: flex;
+
+    li {
+      text-transform: uppercase;
+      width: 5rem;
+      padding: 10px;
+      text-align: center;
+      text-justify: center;
+      color: $secondary-color;
+
+      &:hover {
+        background-color: $secondary-color;
+
+        a {
+          color: #000;
+        }
+      }
+    }
+  }
+}
+
+// Landing Page
+
+#welcome-section {
+  width: 100%;
+  height: calc(100vh - 50px);
+  display: flex;
+
+  #welcome {
+    margin: auto;
+    text-transform: uppercase;
+    color: $main-color;
+  }
+}
+
+// Login Page
+#login-section {
+  width: 100%;
+  height: calc(100vh - 50px);
+
+  form {
+    display: flex;
+    flex-direction: column;
+    height: 15rem;
+    width: 25rem;
+    margin: auto;
+    justify-content: center;
+    height: calc(100vh - 150px);
+
+    #login-form,
+    #registration-form {
+      border: 7px solid $main-color;
+      border-radius: 25px;
+      justify-content: space-between;
+      padding: 15px;
+
+      h2 {
+        margin-top: 10px;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        text-align: center;
+      }
+
+      .form-group {
+        display: flex;
+        justify-content: space-around;
+
+        input {
+          width: 60%;
+          padding: 7px;
+          margin-bottom: 10px;
+          margin-top: 10px;
+          border-radius: 5px;
+          color: #232323;
+          background-color: #e4e4e4;
+        }
+
+        label {
+          font-size: 0.7rem;
+          width: 20%;
+          align-self: center;
+        }
+      }
+    }
+    .btn-primary {
+      text-transform: uppercase;
+      background-color: $main-color;
+      width: 10rem;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .btn-login {
+      display: block;
+      margin: 10px auto;
+      color: #232323;
+
+      &:hover {
+        background-color: $ternary-color;
+      }
+    }
+  }
+}

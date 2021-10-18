@@ -1,0 +1,17 @@
+#color-box {
+  height: 30%;
+  width: 60%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+  grid-auto-rows: minmax(100px, auto);
+
+  .box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid black;
+  }
+}

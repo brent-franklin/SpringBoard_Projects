@@ -3,48 +3,38 @@
 const db = require("../db");
 const ExpressError = require("../expressError");
 
+
 /** Message on the site. */
 
 class Message {
-  constructor(msg) {
-    const { id, from_username, to_username, body, sent_at, read_at } = msg;
-    this.id = id;
-    this.from_username = from_username;
-    this.to_username = to_username;
-    this.body = body;
-    this.sent_at = sent_at;
-    this.read_at = read_at || undefined;
-  }
 
   /** register new message -- returns
    *    {id, from_username, to_username, body, sent_at}
    */
 
-  static async create({ from_username, to_username, body }) {
+  static async create({from_username, to_username, body}) {
     const result = await db.query(
-      `INSERT INTO messages (
+        `INSERT INTO messages (
               from_username,
               to_username,
               body,
               sent_at)
             VALUES ($1, $2, $3, current_timestamp)
             RETURNING id, from_username, to_username, body, sent_at`,
-      [from_username, to_username, body]
-    );
+        [from_username, to_username, body]);
 
-    return new Message(result.rows[0]);
+    return result.rows[0];
   }
 
   /** Update read_at for message */
 
   static async markRead(id) {
     const result = await db.query(
-      `UPDATE messages
+        `UPDATE messages
            SET read_at = current_timestamp
            WHERE id = $1
            RETURNING id, read_at`,
-      [id]
-    );
+        [id]);
 
     if (!result.rows[0]) {
       throw new ExpressError(`No such message: ${id}`, 404);
@@ -63,7 +53,7 @@ class Message {
 
   static async get(id) {
     const result = await db.query(
-      `SELECT m.id,
+        `SELECT m.id,
                 m.from_username,
                 f.first_name AS from_first_name,
                 f.last_name AS from_last_name,
@@ -79,8 +69,7 @@ class Message {
             JOIN users AS f ON m.from_username = f.username
             JOIN users AS t ON m.to_username = t.username
           WHERE m.id = $1`,
-      [id]
-    );
+        [id]);
 
     let m = result.rows[0];
 
@@ -108,5 +97,6 @@ class Message {
     };
   }
 }
+
 
 module.exports = Message;

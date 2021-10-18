@@ -1,0 +1,12 @@
+.pokedex {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  margin: auto;
+  width: 80%;
+  text-align: center;
+}
+
+#winner {
+  padding: 1rem;
+  margin: auto;
+}

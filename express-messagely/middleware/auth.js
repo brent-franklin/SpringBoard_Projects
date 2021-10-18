@@ -7,9 +7,8 @@ const { SECRET_KEY } = require("../config");
 
 function authenticateJWT(req, res, next) {
   try {
-    console.log(req.Cookies);
-    const token = req.headers["cookie"].split("=")[1];
-    const payload = jwt.verify(token, SECRET_KEY);
+    const tokenFromBody = req.body._token;
+    const payload = jwt.verify(tokenFromBody, SECRET_KEY);
     req.user = payload; // create a current user
     return next();
   } catch (err) {
@@ -46,5 +45,5 @@ function ensureCorrectUser(req, res, next) {
 module.exports = {
   authenticateJWT,
   ensureLoggedIn,
-  ensureCorrectUser,
+  ensureCorrectUser
 };

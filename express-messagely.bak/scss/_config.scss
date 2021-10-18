@@ -1,0 +1,14 @@
+$background-color: #232323;
+$main-color: #ec9ec0;
+$secondary-color: #ebe0d0;
+$ternary-color: #ff0080;
+$main-font: Helvetica, sans-serif;
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  line-height: 1.3rem;
+  color: $secondary-color;
+}
