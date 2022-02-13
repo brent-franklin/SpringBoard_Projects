@@ -7,8 +7,8 @@ function App() {
   return (
     <div>
       <h1 id="title">Magic 8ball</h1>
-      <EightBall />
-      <ColorBoxes />
+	<EightBall />
+	<ColorBoxes id="color-box" />
     </div>
   );
 }

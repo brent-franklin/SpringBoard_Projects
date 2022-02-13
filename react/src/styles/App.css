@@ -7,6 +7,10 @@ h1 {
 }
 
 .btn-answer {
+  width: 8rem;
+  margin: auto;
+}
+.btn-reset {
   display: block;
   padding: 5px;
   margin: 10px auto;

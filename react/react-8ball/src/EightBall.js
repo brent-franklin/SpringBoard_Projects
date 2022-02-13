@@ -1,45 +1,32 @@
 import React, { useState } from 'react';
+import Button from './Button';
 import './styles/EightBall.css';
 
 const EightBall = ({ answers }) => {
-  const initialState = {
-    initialMsg: 'Think of a Question',
-    initialColor: 'black',
-  };
-
   const randNum = Math.floor(Math.random() * answers.length);
-  const [{ initialMsg, initialColor }] = useState(initialState);
-  const { msg, color } = answers[randNum];
-  const [firstMsg, setMsg] = useState(initialMsg);
-  const [firstColor, setColor] = useState(initialColor);
+  const [msg, setMsg] = useState("Think of a Question");
+  const [color, setColor] = useState("black");
+  const action = () => (
+      color === "black"
+	  ? (setMsg(answers[randNum].msg), 
+	     setColor(answers[randNum].color))
+	  : (setMsg("Think of a Question"),
+	     setColor("black"))
+  )
+    
   return (
     <>
-      <div
-        className="eightball"
-        style={{
-          backgroundColor: firstColor,
-        }}
-      >
-        <h2>{firstMsg}</h2>
-        <button
-          className="answer"
-          onClick={() => {
-            setMsg(msg);
-            setColor(color);
-          }}
-        >
-          Answer
-        </button>
-      </div>
-      <button
-        className="reset"
-        onClick={() => {
-          setMsg(initialMsg);
-          setColor(initialColor);
-        }}
-      >
-        Reset
-      </button>
+	<div
+	    className="eightball"
+	    style={{backgroundColor: color}}
+	>
+	    <h2>{msg}</h2>
+	</div>
+	<Button
+	    className="btn-answer"
+	    value={color === 'black' ? "Answer" : "Reset"}
+	    action={action}
+	/>
     </>
   );
 };
