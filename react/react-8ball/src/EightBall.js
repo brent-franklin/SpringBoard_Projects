@@ -2,30 +2,40 @@ import React, { useState } from 'react';
 import Button from './Button';
 import './styles/EightBall.css';
 
+/*
+  Eightball will have two buttons, one for answers and one to reset
+  Two pieces of state are used for the color and the message
+ */
 const EightBall = ({ answers }) => {
+    // Random index to chose random color
   const randNum = Math.floor(Math.random() * answers.length);
+    // get message and setMessage function
   const [msg, setMsg] = useState("Think of a Question");
+    // get color and setColor function
   const [color, setColor] = useState("black");
-  const action = () => (
-      color === "black"
-	  ? (setMsg(answers[randNum].msg), 
-	     setColor(answers[randNum].color))
-	  : (setMsg("Think of a Question"),
-	     setColor("black"))
-  )
-    
+    // If 8ball is clicked it rerenders with new color and msg
+  const answerQuestion = () => {
+      setMsg(answers[randNum].msg); 
+      setColor(answers[randNum].color);
+  };
+    // if reset is clicked then 8ball goes back to original msg
+  const resetBall = () => {
+      setMsg("Think of a Question");
+      setColor("black");
+  };
   return (
     <>
 	<div
 	    className="eightball"
-	    style={{backgroundColor: color}}
+            style={{backgroundColor: color}}
+            onClick={answerQuestion}
 	>
 	    <h2>{msg}</h2>
 	</div>
 	<Button
 	    className="btn-answer"
-	    value={color === 'black' ? "Answer" : "Reset"}
-	    action={action}
+	    value={"Reset"}
+	    action={resetBall}
 	/>
     </>
   );

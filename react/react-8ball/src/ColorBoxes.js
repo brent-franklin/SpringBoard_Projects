@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Box from './Box';
 import Button from './Button';
 import './styles/ColorBoxes.css';
@@ -8,14 +8,25 @@ import './styles/ColorBoxes.css';
   - This will create a box for every color in the color list
   - It will randomize the list of colors to receive a random order
   each time it renders the component
-  - it will use map to create an array of div elements, adds a css class,
-  and adds the background color from the randomized colors available
+  - It will use map to create an array of div elements, add a css class,
+  and add the background color from the randomized colors available
 */
 const ColorBoxes = ({ colors }) => {
+    /*
+      To change the color of a single box I dont need to use state
+      and its easier to just select the box and change the color
+      using javascript Style attribute and the list of colors
+      w/ a randomized index
+     */
     const changeColor = () => {
+	// One random index for color and box so the colors and the boxes
+	// don't always match up by their index number 
 	const randIndex1 = Math.floor(Math.random() * colors.length);
 	const randIndex2 = Math.floor(Math.random() * colors.length);
+
+	// Grab all boxes once rendered and event is fired
 	const randBox = document.querySelectorAll('.box')[randIndex1];
+	// Set random box to random color from color array
 	randBox.style.backgroundColor = colors[randIndex2];
     };
     
