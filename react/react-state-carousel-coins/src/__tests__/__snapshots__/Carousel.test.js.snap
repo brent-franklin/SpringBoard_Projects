@@ -1,25 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches card snapshot 1`] = `
-<DocumentFragment>
-  <div
-    class="Card"
-  >
-    <h4
-      class="Card-title"
-    />
-    <img
-      class="Card-image"
-    />
-    <small
-      class="Card-small"
-    >
-      Image  of .
-    </small>
-  </div>
-</DocumentFragment>
-`;
-
 exports[`matches carousel snapshot 1`] = `
 <DocumentFragment>
   <div
@@ -31,10 +11,6 @@ exports[`matches carousel snapshot 1`] = `
     <div
       class="Carousel-main"
     >
-      <i
-        class="fas fa-chevron-circle-left fa-2x"
-        data-testid="left-arrow"
-      />
       <div
         class="Card"
       >
